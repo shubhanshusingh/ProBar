@@ -25,11 +25,20 @@ namespace PhoneApp5
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        {  //OnClick making progress bar visible
             ProBar.Visibility = Visibility.Visible;
+            //intialize a timer
             DispatcherTimer timer = new DispatcherTimer();
+            //Set time aacording to your need,here it is set to 6 Seconds
             timer.Interval = TimeSpan.FromSeconds(6);
-            timer.Tick += (s, arg) => { ProBar.Visibility = Visibility.Collapsed; timer.Stop(); LoginButton.Content = "User Logged In"; };
+            //subcribe to tick event and do whatever you want to do when this event is trigerred
+            timer.Tick += (s, arg) =>
+            {
+                ProBar.Visibility = Visibility.Collapsed;
+                timer.Stop();
+                LoginButton.Content = "User Logged In";
+            };
+            //Start the timer and wait for x seconds to trigger tick event.
             timer.Start();
 
         }
